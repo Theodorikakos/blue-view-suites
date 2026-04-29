@@ -1,0 +1,123 @@
+{
+  "common": {
+    "bookNow": "Book Now",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "back": "Back",
+    "next": "Next",
+    "submit": "Submit",
+    "loading": "Loading...",
+    "error": "Something went wrong"
+  },
+  "nav": {
+    "home": "Home",
+    "suites": "Suites",
+    "book": "Book",
+    "about": "About",
+    "contact": "Contact",
+    "admin": "Admin"
+  },
+  "home": {
+    "hero": {
+      "title": "Blue View Suites",
+      "subtitle": "Luxury accommodation in Astipalea, Greece",
+      "cta": "Reserve Your Stay",
+      "location": "Astipalea, Greece"
+    },
+    "intro": {
+      "label": "Welcome",
+      "text": "Nestled on the enchanting island of Astipalea, Blue View Suites offers an unforgettable escape where traditional Greek beauty meets modern luxury."
+    },
+    "features": {
+      "label": "Experience",
+      "title": "Why Choose Us",
+      "sea": "Aegean Sea Views",
+      "seaDesc": "Wake up to breathtaking panoramic views of the deep blue Aegean Sea",
+      "location": "Prime Location",
+      "locationDesc": "Steps away from Astipalea's charming village and pristine beaches",
+      "comfort": "Modern Comfort",
+      "comfortDesc": "Luxurious amenities blended with traditional Cycladic architecture"
+    },
+    "suites": {
+      "label": "Accommodation",
+      "title": "Our Suites"
+    },
+    "gallery": {
+      "label": "Gallery",
+      "title": "Our Spaces"
+    },
+    "reviews": {
+      "label": "Reviews",
+      "title": "What Our Guests Say"
+    },
+    "location": {
+      "label": "Location",
+      "title": "Find Us in Astipalea",
+      "description": "Located on the enchanting island of Astipalea in the Dodecanese, our suites sit perched above the Aegean with unobstructed views of the crystal-clear waters. Just minutes from the iconic Chora and the island's best beaches.",
+      "address": "Astipalea, Dodecanese, Greece 85900",
+      "distances": "5 min from Chora • 10 min from port • 5 min from beach"
+    },
+    "cta": {
+      "label": "Your escape awaits",
+      "title": "Where the Aegean meets the sky"
+    }
+  },
+  "suites": {
+    "title": "Our Suites",
+    "label": "Accommodation",
+    "subtitle": "Choose your perfect retreat",
+    "guests": "Guests",
+    "perNight": "/ night",
+    "from": "From",
+    "viewDetails": "View Details"
+  },
+  "booking": {
+    "title": "Book Your Stay",
+    "step1": "Select Dates",
+    "step2": "Choose Suite",
+    "step3": "Payment",
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "guests": "Guests",
+    "total": "Total",
+    "confirm": "Confirm Booking",
+    "success": "Booking Confirmed!",
+    "successMessage": "You will receive a confirmation email shortly."
+  },
+  "about": {
+    "title": "About Blue View Suites",
+    "label": "Our Story",
+    "description": "Nestled on the enchanting island of Astipalea, Blue View Suites offers an unforgettable escape where traditional Greek beauty meets modern luxury.",
+    "island": "About Astipalea",
+    "islandLabel": "The Island",
+    "islandDesc": "Known as the 'Butterfly of the Aegean', Astipalea is a hidden gem combining Cycladic charm with Dodecanese warmth.",
+    "sunnyDays": "300+ sunny days",
+    "perYear": "per year",
+    "dodecanese": "Dodecanese",
+    "islandChain": "island chain"
+  },
+  "contact": {
+    "label": "Get in Touch",
+    "title": "Contact Us",
+    "subtitle": "We'd love to hear from you",
+    "description": "Whether you have a question about our suites, need help planning your stay, or want to make a reservation, our team is here to help.",
+    "phone": "Reservations",
+    "email": "Email",
+    "address": "Address",
+    "hours": "Reception Hours",
+    "hoursValue": "08:00 – 22:00 daily",
+    "season": "Season: May – October",
+    "formTitle": "Send us a message",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "message": "Message",
+    "send": "Send Message",
+    "preferredDate": "Preferred Date"
+  },
+  "footer": {
+    "address": "Astipalea, Dodecanese, Greece",
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  }
+}
