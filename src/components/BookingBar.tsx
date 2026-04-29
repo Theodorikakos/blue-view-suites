@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+
 import { Link } from "@/i18n/navigation";
 import { Calendar, Users, ArrowRight } from "lucide-react";
 
@@ -11,7 +12,7 @@ export function BookingBar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > window.innerHeight * 0.5);
+      setVisible(window.scrollY > window.innerHeight * 0.6);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
