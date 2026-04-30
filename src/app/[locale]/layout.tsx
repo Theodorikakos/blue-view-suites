@@ -1,19 +1,26 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Inter, Cormorant_Garamond } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
-import { BookingBar } from "@/components/BookingBar";
 import { HotelJsonLd } from "@/components/HotelJsonLd";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import "../globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-sans",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const cormorant = Cormorant_Garamond({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  weight: ["300", "400", "500"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -73,15 +80,14 @@ export default async function LocaleLayout({ children, params }: Props) {
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={`${geistSans.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-white text-gray-900">
+    <html lang={locale} className={`${inter.variable} ${cormorant.variable} h-full antialiased`}>
+      <body className="min-h-full flex flex-col bg-stone-50 text-stone-900">
         <HotelJsonLd />
         <NextIntlClientProvider messages={messages}>
           <ScrollToTop />
           <Navbar />
           <main className="flex-1">{children}</main>
           <Footer />
-          <BookingBar />
         </NextIntlClientProvider>
       </body>
     </html>

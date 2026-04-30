@@ -1,12 +1,12 @@
 {
   "common": {
-    "bookNow": "Book Now",
-    "learnMore": "Learn More",
-    "viewAll": "View All",
+    "bookNow": "Book",
+    "learnMore": "Discover",
+    "viewAll": "All Suites",
     "back": "Back",
     "next": "Next",
-    "submit": "Submit",
-    "loading": "Loading...",
+    "submit": "Send",
+    "loading": "Loading",
     "error": "Something went wrong"
   },
   "nav": {
@@ -19,105 +19,94 @@
   },
   "home": {
     "hero": {
-      "title": "Blue View Suites",
-      "subtitle": "Luxury accommodation in Astipalea, Greece",
-      "cta": "Reserve Your Stay",
-      "location": "Astipalea, Greece"
+      "location": "Astipalea — Greece",
+      "headline": "A quiet refuge above the Aegean.",
+      "cta": "View Suites"
     },
-    "intro": {
-      "label": "Welcome",
-      "text": "Nestled on the enchanting island of Astipalea, Blue View Suites offers an unforgettable escape where traditional Greek beauty meets modern luxury."
-    },
-    "features": {
-      "label": "Experience",
-      "title": "Why Choose Us",
-      "sea": "Aegean Sea Views",
-      "seaDesc": "Wake up to breathtaking panoramic views of the deep blue Aegean Sea",
-      "location": "Prime Location",
-      "locationDesc": "Steps away from Astipalea's charming village and pristine beaches",
-      "comfort": "Modern Comfort",
-      "comfortDesc": "Luxurious amenities blended with traditional Cycladic architecture"
+    "concept": {
+      "label": "The Concept",
+      "text": "Fifteen suites. One island. A space designed for stillness, not spectacle."
     },
     "suites": {
-      "label": "Accommodation",
-      "title": "Our Suites"
+      "label": "Stay",
+      "title": "The Suites"
     },
-    "gallery": {
-      "label": "Gallery",
-      "title": "Our Spaces"
+    "signature": {
+      "quote": "Where the day begins with light on water and ends in silence.",
+      "label": "The View"
     },
-    "reviews": {
-      "label": "Reviews",
-      "title": "What Our Guests Say"
-    },
-    "location": {
-      "label": "Location",
-      "title": "Find Us in Astipalea",
-      "description": "Located on the enchanting island of Astipalea in the Dodecanese, our suites sit perched above the Aegean with unobstructed views of the crystal-clear waters. Just minutes from the iconic Chora and the island's best beaches.",
-      "address": "Astipalea, Dodecanese, Greece 85900",
-      "distances": "5 min from Chora • 10 min from port • 5 min from beach"
+    "experience": {
+      "label": "Experience",
+      "title": "Slow days. Open sea. Nothing in the way."
     },
     "cta": {
-      "label": "Your escape awaits",
-      "title": "Where the Aegean meets the sky"
+      "label": "Reservations",
+      "title": "Begin your stay."
     }
   },
   "suites": {
-    "title": "Our Suites",
+    "title": "The Suites",
     "label": "Accommodation",
-    "subtitle": "Choose your perfect retreat",
+    "subtitle": "Fifteen private suites",
     "guests": "Guests",
-    "perNight": "/ night",
+    "perNight": "per night",
     "from": "From",
-    "viewDetails": "View Details"
+    "viewDetails": "Enquire"
   },
   "booking": {
-    "title": "Book Your Stay",
-    "step1": "Select Dates",
-    "step2": "Choose Suite",
-    "step3": "Payment",
-    "checkIn": "Check-in",
-    "checkOut": "Check-out",
+    "title": "Reserve",
+    "step1": "Dates",
+    "step2": "Suite",
+    "step3": "Confirm",
+    "checkIn": "Arrival",
+    "checkOut": "Departure",
     "guests": "Guests",
     "total": "Total",
-    "confirm": "Confirm Booking",
-    "success": "Booking Confirmed!",
-    "successMessage": "You will receive a confirmation email shortly."
+    "confirm": "Confirm",
+    "success": "Reservation received",
+    "successMessage": "We'll be in touch shortly."
   },
   "about": {
-    "title": "About Blue View Suites",
-    "label": "Our Story",
-    "description": "Nestled on the enchanting island of Astipalea, Blue View Suites offers an unforgettable escape where traditional Greek beauty meets modern luxury.",
-    "island": "About Astipalea",
-    "islandLabel": "The Island",
-    "islandDesc": "Known as the 'Butterfly of the Aegean', Astipalea is a hidden gem combining Cycladic charm with Dodecanese warmth.",
-    "sunnyDays": "300+ sunny days",
+    "title": "Our Story",
+    "label": "About",
+    "description": "A small, family-run retreat on the quietest of the Cyclades — built around the rhythm of the island, not the demands of the season.",
+    "island": "The Island",
+    "islandLabel": "Astipalea",
+    "islandDesc": "Known as the Butterfly of the Aegean, Astipalea remains one of Greece's least-discovered islands — windswept, intimate, and breathtakingly bare.",
+    "sunnyDays": "300+ days of sun",
     "perYear": "per year",
     "dodecanese": "Dodecanese",
-    "islandChain": "island chain"
+    "islandChain": "westernmost island"
   },
   "contact": {
     "label": "Get in Touch",
-    "title": "Contact Us",
-    "subtitle": "We'd love to hear from you",
-    "description": "Whether you have a question about our suites, need help planning your stay, or want to make a reservation, our team is here to help.",
+    "title": "Contact",
+    "subtitle": "We are at your service.",
+    "description": "For reservations, special requests, or simply to learn more — we welcome your message.",
     "phone": "Reservations",
     "email": "Email",
     "address": "Address",
-    "hours": "Reception Hours",
-    "hoursValue": "08:00 – 22:00 daily",
-    "season": "Season: May – October",
-    "formTitle": "Send us a message",
+    "hours": "Hours",
+    "hoursValue": "08:00 – 22:00",
+    "season": "May – October",
+    "formTitle": "Send a message",
     "firstName": "First Name",
     "lastName": "Last Name",
     "message": "Message",
-    "send": "Send Message",
+    "send": "Send",
     "preferredDate": "Preferred Date"
   },
   "footer": {
-    "address": "Astipalea, Dodecanese, Greece",
+    "tagline": "Fifteen suites on the quietest of the Cyclades.",
+    "address": "Astipalea, Dodecanese, Greece 85900",
+    "contactLabel": "Contact",
+    "navLabel": "Visit",
+    "suites": "Suites",
+    "about": "About",
+    "contact": "Contact",
+    "book": "Reserve",
     "rights": "All rights reserved",
-    "privacy": "Privacy Policy",
-    "terms": "Terms of Service"
+    "privacy": "Privacy",
+    "terms": "Terms"
   }
 }

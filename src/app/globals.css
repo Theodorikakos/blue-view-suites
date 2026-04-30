@@ -1,24 +1,25 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-blue-950: #0c1929;
-  --color-blue-900: #132f4c;
-  --color-blue-800: #1a4971;
-  --color-blue-700: #1d6fad;
-  --color-blue-600: #2196f3;
-  --color-blue-500: #4dabf5;
-  --color-blue-400: #7cc4f8;
-  --color-blue-300: #a8d8fa;
-  --color-blue-200: #c8e6fc;
-  --color-blue-100: #e3f2fd;
-  --color-blue-50: #f0f7ff;
-  --color-sand-50: #faf8f5;
-  --color-sand-100: #f5f0e8;
-  --color-sand-200: #e8dcc8;
-  --color-sand-300: #d4c4a8;
-  --color-gold: #b8860b;
-  --color-gold-light: #d4a94d;
-  --font-sans: var(--font-geist-sans);
+  /* Neutral palette — warm whites, soft beige, charcoal */
+  --color-stone-50: #faf8f4;
+  --color-stone-100: #f4f0e8;
+  --color-stone-200: #e8e1d4;
+  --color-stone-300: #d4c9b5;
+  --color-stone-400: #a89e8c;
+  --color-stone-500: #7d7568;
+  --color-stone-600: #5a5448;
+  --color-stone-700: #3f3a32;
+  --color-stone-800: #2a2620;
+  --color-stone-900: #1a1814;
+  --color-stone-950: #0f0e0b;
+
+  /* Subtle accent — muted bronze/sand */
+  --color-accent: #9a7d5a;
+  --color-accent-light: #c4a87f;
+
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 }
 
 html {
@@ -29,6 +30,15 @@ body {
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: #faf8f4;
+  color: #2a2620;
+}
+
+/* Serif utility */
+.font-serif {
+  font-family: var(--font-serif), Georgia, serif;
+  font-weight: 300;
+  letter-spacing: -0.01em;
 }
 
 /* Smooth reveal animations */
@@ -48,54 +58,40 @@ body {
   to { opacity: 1; }
 }
 
-@keyframes scaleIn {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
+@keyframes slowZoom {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
 }
 
 .animate-fade-up {
-  animation: fadeUp 0.8s ease-out forwards;
+  animation: fadeUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .animate-fade-in {
-  animation: fadeIn 1s ease-out forwards;
+  animation: fadeIn 1.5s ease-out forwards;
 }
 
-.animate-scale-in {
-  animation: scaleIn 0.6s ease-out forwards;
+.animate-slow-zoom {
+  animation: slowZoom 12s ease-out forwards;
 }
 
 .animation-delay-200 { animation-delay: 0.2s; opacity: 0; }
 .animation-delay-400 { animation-delay: 0.4s; opacity: 0; }
 .animation-delay-600 { animation-delay: 0.6s; opacity: 0; }
+.animation-delay-800 { animation-delay: 0.8s; opacity: 0; }
 
-/* Luxury text gradient */
-.text-gradient {
-  background: linear-gradient(135deg, #ffffff 0%, #c8e6fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Glass morphism utility */
+/* Glass morphism (used sparingly) */
 .glass {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(250, 248, 244, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }
 
 /* Image overlay gradients */
 .overlay-gradient {
-  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(12,25,41,0.85) 100%);
+  background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(15,14,11,0.6) 100%);
 }
 
 .overlay-gradient-top {
-  background: linear-gradient(180deg, rgba(12,25,41,0.4) 0%, rgba(0,0,0,0) 40%);
+  background: linear-gradient(180deg, rgba(15,14,11,0.3) 0%, rgba(0,0,0,0) 40%);
 }
-

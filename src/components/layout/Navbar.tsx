@@ -14,83 +14,80 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const links = [
-    { href: "/", label: t("home") },
     { href: "/suites", label: t("suites") },
     { href: "/about", label: t("about") },
     { href: "/contact", label: t("contact") },
   ];
 
   const otherLocale = locale === "en" ? "el" : "en";
-  const isHome = pathname === "/";
   const hasDarkHero = ["/", "/suites", "/about", "/contact"].includes(pathname);
   const showLight = !scrolled && hasDarkHero;
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled
-          ? "bg-white/95 backdrop-blur-xl border-b border-gray-100 shadow-sm"
+          ? "bg-stone-50/95 backdrop-blur-xl"
           : hasDarkHero
           ? "bg-transparent"
-          : "bg-white/95 backdrop-blur-xl border-b border-gray-100"
+          : "bg-stone-50/95 backdrop-blur-xl"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-6 lg:px-8 h-20 flex items-center justify-between">
+      <nav className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
+        {/* Logo — serif, refined */}
         <Link
           href="/"
-          className={`text-lg font-medium tracking-[0.2em] uppercase transition-colors duration-300 ${
-            showLight ? "text-white" : "text-blue-950"
+          className={`font-serif text-xl md:text-2xl tracking-tight transition-colors duration-500 ${
+            showLight ? "text-white" : "text-stone-900"
           }`}
         >
-          Blue View Suites
+          Blue View
         </Link>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-10">
+        {/* Desktop links — minimal */}
+        <div className="hidden md:flex items-center gap-12">
           {links.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-[13px] font-medium tracking-wide uppercase transition-all duration-300 hover:opacity-100 ${
+              className={`text-[11px] tracking-[0.25em] uppercase transition-colors duration-500 ${
                 pathname === link.href
                   ? showLight
-                    ? "text-white opacity-100"
-                    : "text-blue-700 opacity-100"
+                    ? "text-white"
+                    : "text-stone-900"
                   : showLight
-                  ? "text-white/80 hover:text-white"
-                  : "text-gray-600 opacity-80 hover:text-blue-900"
+                  ? "text-white/70 hover:text-white"
+                  : "text-stone-500 hover:text-stone-900"
               }`}
             >
               {link.label}
             </Link>
           ))}
+        </div>
 
-          {/* Language switcher */}
+        {/* Right side — language + book */}
+        <div className="hidden md:flex items-center gap-8">
           <Link
             href={pathname}
             locale={otherLocale}
-            className={`text-[13px] font-medium tracking-wide uppercase px-3 py-1 rounded-full border transition-all duration-300 ${
-              showLight
-                ? "border-white/40 text-white/70 hover:border-white hover:text-white"
-                : "border-gray-300 text-gray-500 hover:border-blue-600 hover:text-blue-600"
+            className={`text-[11px] tracking-[0.25em] uppercase transition-colors duration-500 ${
+              showLight ? "text-white/70 hover:text-white" : "text-stone-500 hover:text-stone-900"
             }`}
           >
             {otherLocale}
           </Link>
-
-          {/* Book CTA */}
           <Link
             href="/book"
-            className={`text-[13px] font-semibold tracking-wide uppercase px-6 py-2.5 transition-all duration-300 ${
+            className={`text-[11px] tracking-[0.25em] uppercase border-b pb-1 transition-all duration-500 ${
               showLight
-                ? "bg-white text-blue-950 hover:bg-white/90"
-                : "bg-blue-950 text-white hover:bg-blue-800"
+                ? "text-white border-white/40 hover:border-white"
+                : "text-stone-900 border-stone-400 hover:border-stone-900"
             }`}
           >
             {t("book")}
@@ -100,34 +97,34 @@ export function Navbar() {
         {/* Mobile toggle */}
         <button
           className={`md:hidden p-2 relative z-50 transition-colors ${
-            mobileOpen ? "text-blue-950" : showLight ? "text-white" : "text-blue-950"
+            mobileOpen ? "text-stone-900" : showLight ? "text-white" : "text-stone-900"
           }`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
 
-      {/* Mobile menu — fullscreen overlay */}
+      {/* Mobile menu — fullscreen */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-500 ${
+        className={`fixed inset-0 z-40 md:hidden transition-all duration-700 ${
           mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
-        <div className="absolute inset-0 bg-white" />
+        <div className="absolute inset-0 bg-stone-50" />
         <div className="relative h-full flex flex-col justify-center items-center px-6">
-          <div className="flex flex-col items-center gap-8">
+          <div className="flex flex-col items-center gap-10">
             {links.map((link, i) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-2xl font-light tracking-wide uppercase transition-all duration-500 ${
+                className={`font-serif text-3xl md:text-4xl tracking-tight transition-all duration-700 ${
                   mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                 } ${
-                  pathname === link.href ? "text-blue-700" : "text-blue-950 hover:text-blue-700"
+                  pathname === link.href ? "text-stone-900" : "text-stone-700 hover:text-stone-900"
                 }`}
-                style={{ transitionDelay: mobileOpen ? `${150 + i * 75}ms` : "0ms" }}
+                style={{ transitionDelay: mobileOpen ? `${200 + i * 100}ms` : "0ms" }}
                 onClick={() => setMobileOpen(false)}
               >
                 {link.label}
@@ -135,14 +132,14 @@ export function Navbar() {
             ))}
 
             <div
-              className={`mt-4 flex flex-col items-center gap-6 transition-all duration-500 ${
+              className={`mt-8 flex flex-col items-center gap-8 transition-all duration-700 ${
                 mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
-              style={{ transitionDelay: mobileOpen ? "450ms" : "0ms" }}
+              style={{ transitionDelay: mobileOpen ? "550ms" : "0ms" }}
             >
               <Link
                 href="/book"
-                className="bg-blue-950 text-white px-10 py-4 text-[13px] font-semibold tracking-[0.15em] uppercase hover:bg-blue-800 transition-colors"
+                className="text-[11px] tracking-[0.3em] uppercase text-stone-900 border-b border-stone-400 pb-2 hover:border-stone-900 transition-all duration-300"
                 onClick={() => setMobileOpen(false)}
               >
                 {t("book")}
@@ -150,7 +147,7 @@ export function Navbar() {
               <Link
                 href={pathname}
                 locale={otherLocale}
-                className="text-sm font-medium text-gray-400 uppercase tracking-wide hover:text-blue-700 transition-colors"
+                className="text-[11px] tracking-[0.25em] uppercase text-stone-500 hover:text-stone-900 transition-colors"
                 onClick={() => setMobileOpen(false)}
               >
                 {otherLocale === "el" ? "Ελληνικά" : "English"}
@@ -162,4 +159,3 @@ export function Navbar() {
     </header>
   );
 }
-
