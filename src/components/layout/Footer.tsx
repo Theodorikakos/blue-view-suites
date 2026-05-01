@@ -6,14 +6,28 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-stone-900 text-stone-300">
+    <footer className="bg-stone-900 text-stone-300 pb-24 md:pb-0">
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-20 md:py-24">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-12">
           {/* Brand */}
           <div>
-            <h3 className="font-serif text-2xl text-stone-50 tracking-tight mb-6">
-              Blue View
-            </h3>
+            <div className="flex items-center gap-2.5 mb-6 text-stone-50">
+              <svg
+                viewBox="0 0 64 64"
+                aria-hidden="true"
+                className="w-7 h-7"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={2.5}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="32" cy="24" r="9" />
+                <path d="M6 42c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" />
+                <path d="M6 52c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" />
+              </svg>
+              <h3 className="font-serif text-2xl tracking-tight">Blue View</h3>
+            </div>
             <p className="text-[13px] leading-relaxed text-stone-400 max-w-xs">
               {t("tagline")}
             </p>
@@ -21,10 +35,10 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-stone-500 mb-6">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 mb-6">
               {t("contactLabel")}
             </p>
-            <div className="flex flex-col gap-3 text-[13px] text-stone-300">
+            <address className="not-italic flex flex-col gap-3 text-[13px] text-stone-300">
               <a href="mailto:info@blueviewsuites.gr" className="hover:text-stone-50 transition-colors">
                 info@blueviewsuites.gr
               </a>
@@ -32,43 +46,51 @@ export function Footer() {
                 +30 22430 61000
               </a>
               <span className="text-stone-400">{t("address")}</span>
-            </div>
+            </address>
           </div>
 
           {/* Navigation */}
-          <div>
-            <p className="text-[10px] tracking-[0.3em] uppercase text-stone-500 mb-6">
+          <nav aria-label="Footer">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-stone-400 mb-6">
               {t("navLabel")}
             </p>
-            <div className="flex flex-col gap-3 text-[13px]">
-              <Link href="/suites" className="text-stone-300 hover:text-stone-50 transition-colors w-fit">
-                {t("suites")}
-              </Link>
-              <Link href="/about" className="text-stone-300 hover:text-stone-50 transition-colors w-fit">
-                {t("about")}
-              </Link>
-              <Link href="/contact" className="text-stone-300 hover:text-stone-50 transition-colors w-fit">
-                {t("contact")}
-              </Link>
-              <Link href="/book" className="text-stone-300 hover:text-stone-50 transition-colors w-fit">
-                {t("book")}
-              </Link>
-            </div>
-          </div>
+            <ul className="flex flex-col gap-3 text-[13px]">
+              <li>
+                <Link href="/suites" className="text-stone-300 hover:text-stone-50 transition-colors w-fit inline-block">
+                  {t("suites")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-stone-300 hover:text-stone-50 transition-colors w-fit inline-block">
+                  {t("about")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-stone-300 hover:text-stone-50 transition-colors w-fit inline-block">
+                  {t("contact")}
+                </Link>
+              </li>
+              <li>
+                <Link href="/book" className="text-stone-300 hover:text-stone-50 transition-colors w-fit inline-block">
+                  {t("book")}
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
 
         {/* Bottom */}
         <div className="mt-20 pt-8 border-t border-stone-800 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <p className="text-[11px] tracking-wide text-stone-500">
+          <p className="text-[11px] tracking-wide text-stone-400">
             © {currentYear} Blue View Suites
           </p>
           <div className="flex gap-6">
-            <span className="text-[11px] text-stone-500 hover:text-stone-300 cursor-pointer transition-colors">
+            <button type="button" className="text-[11px] text-stone-400 hover:text-stone-200 transition-colors">
               {t("privacy")}
-            </span>
-            <span className="text-[11px] text-stone-500 hover:text-stone-300 cursor-pointer transition-colors">
+            </button>
+            <button type="button" className="text-[11px] text-stone-400 hover:text-stone-200 transition-colors">
               {t("terms")}
-            </span>
+            </button>
           </div>
         </div>
       </div>

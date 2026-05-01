@@ -6,6 +6,7 @@ export function HotelJsonLd() {
     description:
       "Luxury boutique suites with stunning Aegean Sea views on the island of Astipalea, Greece.",
     url: "https://blueviewsuites.gr",
+    logo: "https://blueviewsuites.gr/icon.svg",
     image:
       "https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=1200&h=630&fit=crop",
     address: {

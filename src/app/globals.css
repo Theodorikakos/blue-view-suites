@@ -14,12 +14,22 @@
   --color-stone-900: #1a1814;
   --color-stone-950: #0f0e0b;
 
+  /* Sand — warm off-white tints (used on form/section backgrounds) */
+  --color-sand-50: #f7f3ec;
+  --color-sand-100: #efe7d8;
+  --color-sand-200: #e0d3bb;
+
   /* Subtle accent — muted bronze/sand */
   --color-accent: #9a7d5a;
   --color-accent-light: #c4a87f;
+  --color-gold: #b8935a;
 
   --font-sans: var(--font-sans);
   --font-serif: var(--font-serif);
+
+  /* Spring-like easings */
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 html {
@@ -32,6 +42,39 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background: #faf8f4;
   color: #2a2620;
+}
+
+/* Accessible focus rings — visible only for keyboard users */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Skip-to-content link — visible only on keyboard focus */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--color-stone-900);
+  color: var(--color-stone-50);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0 0 6px 6px;
+  transition: transform 0.2s ease-out;
+}
+.skip-link:focus {
+  transform: translate(-50%, 0);
+  outline: 2px solid var(--color-accent-light);
+  outline-offset: 2px;
 }
 
 /* Serif utility */
@@ -94,4 +137,35 @@ body {
 
 .overlay-gradient-top {
   background: linear-gradient(180deg, rgba(15,14,11,0.3) 0%, rgba(0,0,0,0) 40%);
+}
+
+/* Hover arrow nudge (use with `group` on parent: <span class="hover-arrow">) */
+.group:hover .hover-arrow {
+  transform: translateX(4px);
+}
+.hover-arrow {
+  transition: transform 0.45s var(--ease-spring);
+  display: inline-block;
+}
+
+/* Reduced motion — respect OS preference */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-slow-zoom {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

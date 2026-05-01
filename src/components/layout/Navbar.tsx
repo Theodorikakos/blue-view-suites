@@ -19,6 +19,24 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock body scroll when mobile menu open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  // Close mobile menu on Escape
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
+
   const links = [
     { href: "/suites", label: t("suites") },
     { href: "/about", label: t("about") },
@@ -30,6 +48,7 @@ export function Navbar() {
   const showLight = !scrolled && hasDarkHero;
 
   return (
+    <>
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         scrolled
@@ -40,35 +59,54 @@ export function Navbar() {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-        {/* Logo — serif, refined */}
+        {/* Logo — mark + serif wordmark */}
         <Link
           href="/"
-          className={`font-serif text-xl md:text-2xl tracking-tight transition-colors duration-500 ${
+          aria-label="Blue View Suites — Home"
+          className={`group inline-flex items-center gap-2.5 transition-colors duration-500 ${
             showLight ? "text-white" : "text-stone-900"
           }`}
         >
-          Blue View
+          <svg
+            viewBox="0 0 64 64"
+            aria-hidden="true"
+            className="w-6 h-6 md:w-7 md:h-7"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="32" cy="24" r="9" />
+            <path d="M6 42c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" />
+            <path d="M6 52c4 0 4-3 8-3s4 3 8 3 4-3 8-3 4 3 8 3 4-3 8-3 4 3 8 3" />
+          </svg>
+          <span className="font-serif text-xl md:text-2xl tracking-tight">Blue View</span>
         </Link>
 
         {/* Desktop links — minimal */}
         <div className="hidden md:flex items-center gap-12">
-          {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-[11px] tracking-[0.25em] uppercase transition-colors duration-500 ${
-                pathname === link.href
-                  ? showLight
-                    ? "text-white"
-                    : "text-stone-900"
-                  : showLight
-                  ? "text-white/70 hover:text-white"
-                  : "text-stone-500 hover:text-stone-900"
-              }`}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={isActive ? "page" : undefined}
+                className={`relative text-[11px] tracking-[0.25em] uppercase transition-colors duration-500 after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-px after:transition-all after:duration-500 ${
+                  isActive
+                    ? showLight
+                      ? "text-white after:bg-white"
+                      : "text-stone-900 after:bg-stone-900"
+                    : showLight
+                    ? "text-white/80 hover:text-white after:bg-transparent"
+                    : "text-stone-600 hover:text-stone-900 after:bg-transparent"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Right side — language + book */}
@@ -76,8 +114,9 @@ export function Navbar() {
           <Link
             href={pathname}
             locale={otherLocale}
+            aria-label={`Switch language to ${otherLocale === "el" ? "Greek" : "English"}`}
             className={`text-[11px] tracking-[0.25em] uppercase transition-colors duration-500 ${
-              showLight ? "text-white/70 hover:text-white" : "text-stone-500 hover:text-stone-900"
+              showLight ? "text-white/80 hover:text-white" : "text-stone-600 hover:text-stone-900"
             }`}
           >
             {otherLocale}
@@ -96,50 +135,69 @@ export function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className={`md:hidden p-2 relative z-50 transition-colors ${
+          className={`md:hidden inline-flex items-center justify-center w-11 h-11 -mr-2 relative z-50 transition-colors ${
             mobileOpen ? "text-stone-900" : showLight ? "text-white" : "text-stone-900"
           }`}
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
+          aria-expanded={mobileOpen}
         >
           {mobileOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </nav>
+      </header>
 
-      {/* Mobile menu — fullscreen */}
+      {/* Mobile menu — slide-in from right (rendered OUTSIDE header to escape its stacking context) */}
+      {/* Backdrop */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-700 ${
-          mobileOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        className={`fixed inset-0 z-[60] md:hidden bg-stone-950/50 backdrop-blur-sm transition-opacity duration-500 ${
+          mobileOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
+        onClick={() => setMobileOpen(false)}
+        aria-hidden="true"
+      />
+      {/* Panel */}
+      <div
+        className={`fixed top-0 right-0 bottom-0 z-[70] md:hidden w-[88%] max-w-sm bg-white shadow-2xl shadow-stone-950/20 transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          mobileOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+        role="dialog"
+        aria-modal="true"
       >
-        <div className="absolute inset-0 bg-stone-50" />
-        <div className="relative h-full flex flex-col justify-center items-center px-6">
-          <div className="flex flex-col items-center gap-10">
-            {links.map((link, i) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`font-serif text-3xl md:text-4xl tracking-tight transition-all duration-700 ${
-                  mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-                } ${
-                  pathname === link.href ? "text-stone-900" : "text-stone-700 hover:text-stone-900"
-                }`}
-                style={{ transitionDelay: mobileOpen ? `${200 + i * 100}ms` : "0ms" }}
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+          <div className="h-full flex flex-col px-8 pt-28 pb-[max(env(safe-area-inset-bottom),24px)]">
+            <nav className="flex flex-col gap-7">
+              {links.map((link, i) => {
+                const isActive = pathname === link.href;
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={`font-serif text-3xl tracking-tight min-h-[44px] flex items-center transition-all duration-700 ${
+                      mobileOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
+                    } ${
+                      isActive
+                        ? "text-stone-900 underline underline-offset-8 decoration-1"
+                        : "text-stone-500 hover:text-stone-900"
+                    }`}
+                    style={{ transitionDelay: mobileOpen ? `${150 + i * 80}ms` : "0ms" }}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </nav>
 
             <div
-              className={`mt-8 flex flex-col items-center gap-8 transition-all duration-700 ${
-                mobileOpen ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              className={`mt-auto flex flex-col gap-6 transition-all duration-700 ${
+                mobileOpen ? "opacity-100 translate-x-0" : "opacity-0 translate-x-6"
               }`}
-              style={{ transitionDelay: mobileOpen ? "550ms" : "0ms" }}
+              style={{ transitionDelay: mobileOpen ? "450ms" : "0ms" }}
             >
               <Link
                 href="/book"
-                className="text-[11px] tracking-[0.3em] uppercase text-stone-900 border-b border-stone-400 pb-2 hover:border-stone-900 transition-all duration-300"
+                className="inline-flex items-center justify-center bg-stone-900 text-stone-50 min-h-[52px] px-8 text-[11px] tracking-[0.3em] uppercase active:scale-95 transition-transform"
                 onClick={() => setMobileOpen(false)}
               >
                 {t("book")}
@@ -147,7 +205,7 @@ export function Navbar() {
               <Link
                 href={pathname}
                 locale={otherLocale}
-                className="text-[11px] tracking-[0.25em] uppercase text-stone-500 hover:text-stone-900 transition-colors"
+                className="text-[11px] tracking-[0.25em] uppercase text-stone-500 hover:text-stone-900 transition-colors min-h-[44px] inline-flex items-center justify-center"
                 onClick={() => setMobileOpen(false)}
               >
                 {otherLocale === "el" ? "Ελληνικά" : "English"}
@@ -155,7 +213,6 @@ export function Navbar() {
             </div>
           </div>
         </div>
-      </div>
-    </header>
+    </>
   );
 }

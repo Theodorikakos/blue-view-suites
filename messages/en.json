@@ -41,7 +41,8 @@
     },
     "cta": {
       "label": "Reservations",
-      "title": "Begin your stay."
+      "title": "Begin your stay.",
+      "button": "Book Now"
     }
   },
   "suites": {

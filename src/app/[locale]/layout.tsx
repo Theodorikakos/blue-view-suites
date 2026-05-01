@@ -8,6 +8,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { HotelJsonLd } from "@/components/HotelJsonLd";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { PageTransition } from "@/components/PageTransition";
+import { MobileBookBar } from "@/components/MobileBookBar";
 import "../globals.css";
 
 const inter = Inter({
@@ -56,6 +58,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   alternates: {
     canonical: "https://blueviewsuites.gr",
     languages: {
@@ -85,9 +94,15 @@ export default async function LocaleLayout({ children, params }: Props) {
         <HotelJsonLd />
         <NextIntlClientProvider messages={messages}>
           <ScrollToTop />
+          <a href="#main-content" className="skip-link">
+            Skip to content
+          </a>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" className="flex-1" tabIndex={-1}>
+            <PageTransition>{children}</PageTransition>
+          </main>
           <Footer />
+          <MobileBookBar />
         </NextIntlClientProvider>
       </body>
     </html>

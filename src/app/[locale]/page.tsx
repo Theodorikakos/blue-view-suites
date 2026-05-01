@@ -5,6 +5,8 @@ import { ArrowRight } from "lucide-react";
 import { images } from "@/lib/images";
 import { blurPlaceholder } from "@/lib/placeholder";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { ParallaxLayer } from "@/components/ParallaxLayer";
+import { MagneticButton } from "@/components/MagneticButton";
 
 export default function HomePage() {
   const t = useTranslations("home");
@@ -14,18 +16,20 @@ export default function HomePage() {
     <>
       {/* 1. HERO — Cinematic, single statement */}
       <section className="relative h-screen overflow-hidden">
-        <div className="absolute inset-0 animate-slow-zoom">
-          <Image
-            src={images.hero}
-            alt="Blue View Suites"
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-            placeholder="blur"
-            blurDataURL={blurPlaceholder}
-          />
-        </div>
+        <ParallaxLayer speed={140} className="absolute inset-0">
+          <div className="absolute inset-0 animate-slow-zoom">
+            <Image
+              src={images.hero}
+              alt="Blue View Suites"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+              placeholder="blur"
+              blurDataURL={blurPlaceholder}
+            />
+          </div>
+        </ParallaxLayer>
         <div className="absolute inset-0 bg-stone-950/30" />
 
         <div className="relative z-10 h-full flex items-end pb-20 md:pb-28">
@@ -36,13 +40,15 @@ export default function HomePage() {
             <h1 className="font-serif text-5xl md:text-7xl lg:text-[5.5rem] text-white leading-[1.05] tracking-tight mb-10 max-w-3xl animate-fade-up animation-delay-200">
               {t("hero.headline")}
             </h1>
-            <Link
-              href="/suites"
-              className="inline-flex items-center gap-3 text-[12px] tracking-[0.25em] uppercase text-white border-b border-white/40 pb-2 hover:border-white transition-all duration-500 animate-fade-up animation-delay-400"
-            >
-              {t("hero.cta")}
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
+            <MagneticButton>
+              <Link
+                href="/suites"
+                className="group inline-flex items-center gap-3 text-[12px] tracking-[0.25em] uppercase text-white border-b border-white/40 pb-2 hover:border-white transition-all duration-500 animate-fade-up animation-delay-400"
+              >
+                {t("hero.cta")}
+                <ArrowRight className="w-3.5 h-3.5 hover-arrow" />
+              </Link>
+            </MagneticButton>
           </div>
         </div>
       </section>
@@ -81,13 +87,13 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-4">
             {[
               { name: "Aegean", img: images.suites.aegean },
               { name: "Sunset", img: images.suites.sunset },
               { name: "Retreat", img: images.suites.honeymoon },
             ].map((suite, i) => (
-              <ScrollReveal key={suite.name} delay={i * 120}>
+              <ScrollReveal key={suite.name} delay={i * 120} className={i === 2 ? "sm:col-span-2 lg:col-span-1" : ""}>
                 <Link href="/suites" className="group block">
                   <div className="relative aspect-[3/4] overflow-hidden bg-stone-100 mb-5">
                     <Image
@@ -96,7 +102,7 @@ export default function HomePage() {
                       fill
                       loading="lazy"
                       className="object-cover group-hover:scale-[1.04] transition-transform duration-[1500ms] ease-out"
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       placeholder="blur"
                       blurDataURL={blurPlaceholder}
                     />
@@ -190,13 +196,15 @@ export default function HomePage() {
           <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-stone-900 leading-[1.15] tracking-tight mb-12">
             {t("cta.title")}
           </h2>
-          <Link
-            href="/book"
-            className="inline-flex items-center gap-3 text-[12px] tracking-[0.25em] uppercase text-stone-900 border-b border-stone-400 pb-2 hover:border-stone-900 transition-all duration-500"
-          >
-            {t("hero.cta")}
-            <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
+          <MagneticButton>
+            <Link
+              href="/book"
+              className="group inline-flex items-center gap-3 text-[12px] tracking-[0.25em] uppercase text-stone-900 border-b border-stone-400 pb-2 hover:border-stone-900 transition-all duration-500"
+            >
+              {t("cta.button")}
+              <ArrowRight className="w-3.5 h-3.5 hover-arrow" />
+            </Link>
+          </MagneticButton>
         </ScrollReveal>
       </section>
     </>
