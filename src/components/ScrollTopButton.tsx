@@ -19,12 +19,18 @@ export function ScrollTopButton() {
 
   const scrollToTop = () => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const start = window.scrollY || window.pageYOffset;
+    const doc = document.scrollingElement || document.documentElement;
+    const start = doc.scrollTop || window.scrollY || window.pageYOffset || 0;
     if (reduce || start === 0) {
+      doc.scrollTop = 0;
       window.scrollTo(0, 0);
       return;
     }
-    // Manual rAF tween — iOS Safari's native smooth scroll is unreliable.
+    // Suspend CSS `scroll-behavior: smooth` so it doesn't fight the rAF tween (iOS Safari).
+    const html = document.documentElement;
+    const prevBehavior = html.style.scrollBehavior;
+    html.style.scrollBehavior = "auto";
+
     const duration = Math.min(700, Math.max(300, start * 0.6));
     const startTime = performance.now();
     // easeOutCubic
@@ -32,8 +38,15 @@ export function ScrollTopButton() {
     const step = (now: number) => {
       const elapsed = now - startTime;
       const t = Math.min(1, elapsed / duration);
-      window.scrollTo(0, Math.round(start * (1 - ease(t))));
-      if (t < 1) requestAnimationFrame(step);
+      const y = Math.round(start * (1 - ease(t)));
+      // Set on both for cross-browser safety (iOS uses scrollingElement).
+      doc.scrollTop = y;
+      window.scrollTo(0, y);
+      if (t < 1) {
+        requestAnimationFrame(step);
+      } else {
+        html.style.scrollBehavior = prevBehavior;
+      }
     };
     requestAnimationFrame(step);
   };
