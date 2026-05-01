@@ -10,6 +10,7 @@ import { HotelJsonLd } from "@/components/HotelJsonLd";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { PageTransition } from "@/components/PageTransition";
 import { MobileBookBar } from "@/components/MobileBookBar";
+import { ScrollTopButton } from "@/components/ScrollTopButton";
 import "../globals.css";
 
 const inter = Inter({
@@ -103,6 +104,7 @@ export default async function LocaleLayout({ children, params }: Props) {
           </main>
           <Footer />
           <MobileBookBar />
+          <ScrollTopButton />
         </NextIntlClientProvider>
       </body>
     </html>
