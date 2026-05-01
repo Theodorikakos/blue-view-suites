@@ -19,7 +19,23 @@ export function ScrollTopButton() {
 
   const scrollToTop = () => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    const start = window.scrollY || window.pageYOffset;
+    if (reduce || start === 0) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    // Manual rAF tween — iOS Safari's native smooth scroll is unreliable.
+    const duration = Math.min(700, Math.max(300, start * 0.6));
+    const startTime = performance.now();
+    // easeOutCubic
+    const ease = (t: number) => 1 - Math.pow(1 - t, 3);
+    const step = (now: number) => {
+      const elapsed = now - startTime;
+      const t = Math.min(1, elapsed / duration);
+      window.scrollTo(0, Math.round(start * (1 - ease(t))));
+      if (t < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
   };
 
   return (
